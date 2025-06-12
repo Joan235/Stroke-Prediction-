@@ -1,17 +1,11 @@
 {
-    "functions": {
-        "app.py": {
-            "memory": 128,
-            "maxDuration": 10
-        }
-    },
+    "version": 2,
     "builds": [
         {
             "src": "app.py",
             "use": "@vercel/python",
-            "config": {
-                "runtime": "python3.9",
-                "maxLambdaSize": "10mb"
+            "config": { 
+                "runtime": "python3.9"
             }
         }
     ],
