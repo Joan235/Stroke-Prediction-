@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: stroke-prediction-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.8
+    autoDeploy: true
+    
+    # Optional: include folders with model files if needed
+    # staticPublishPath: public
+    # If you want to expose static files, uncomment and set the path
