@@ -4,12 +4,15 @@
         {
             "src": "app.py",
             "use": "@vercel/python",
-            "config": { 
+            "config": {
                 "runtime": "python3.8",
                 "includedFiles": [
                     "templates/**",
-                    "Model/**"
-                ]
+                    "Model/**",
+                    "requirements.txt",
+                    "constraints.txt"
+                ],
+                "installCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt -c constraints.txt"
             }
         }
     ],
