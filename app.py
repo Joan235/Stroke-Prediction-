@@ -9,8 +9,8 @@ app = Flask(__name__)
 # Load the trained model and encoder with error handling
 model = None
 encoder = None
-model_path = 'model/stroke_prediction_model.pkl'
-encoder_path = 'model/encoders.pkl'
+model_path = 'Model/stroke_prediction_model.pkl'  # Fixed case sensitivity
+encoder_path = 'Model/encoders.pkl'  # Fixed case sensitivity
 
 if os.path.exists(model_path) and os.path.exists(encoder_path):
     model = joblib.load(open(model_path, 'rb'))
@@ -21,14 +21,14 @@ else:
 @app.route('/')
 def home():
     try:
-        return render_template('index.html')
+        return render_template('index.html', bmi=None, smoking_status=None, prediction_text=None)
     except Exception as e:
         return f"Error loading template: {e}", 500
 
 @app.route('/predict', methods=['POST'])
 def predict():
     if model is None or encoder is None:
-        return render_template('index.html', prediction_text="Model files not found. Please contact the administrator.")
+        return render_template('index.html', prediction_text="Model files not found. Please contact the administrator.", bmi=None, smoking_status=None)
         
     if request.method == 'POST':
         # Collect data from form
